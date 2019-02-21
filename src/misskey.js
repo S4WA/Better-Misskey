@@ -1,12 +1,26 @@
 var columns, currentColumn, numIntervalEnabled = false;
 var imgDoc, files = new Array(), currentImageNum = 0, imgText;
+var notes, loadedNotes = new Array();
 
 window.onload = function() {
 	if (isDeckMode()) {
 		// ※1
 		columns = document.getElementsByClassName("dnpfarvgbnfmyzbdquhhzyxcmstpdqzs active");
-		for (var i = 0; i < columns.length; i++) columns[i].id = "c" + i;
+		for (var i = 0; i < columns.length; i++) {
+			columns[i].id = "c" + i;
+
+			// ※4
+			var number = document.createElement("span");
+			number.innerText = (i + 1);
+			columns[i].childNodes[0].appendChild(number);
+		}
 	}
+
+	// ※6
+	clearReplyElem();
+
+	// ※7
+	putJumpNotesBtn();
 };
 
 document.onkeydown = function(event) {
@@ -19,6 +33,11 @@ document.onkeydown = function(event) {
 	// ※3
 	switchImage(event);
 	if (canSwitchImage() && (event.keyCode === 37 || event.keyCode === 39)) {return false;}
+
+	// ※5
+	if (imgDoc !== null && !enabledShortcutKey(event) && event.keyCode === 27) {
+		document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq")[0].childNodes[1].click();
+	}
 };
 
 document.onkeyup = function(event) {
@@ -44,7 +63,7 @@ document.onclick = function(event) {
 			doc.title = "";
 
 			imgText = document.createElement("span");
-			imgText.style.bakcgroundColor = "white";
+			// imgText.style.color = "white";
 			imgText.innerText = (currentImageNum + 1) + "/" + files.length;
 			var center = document.createElement("center");
 			center.appendChild(imgText);
@@ -92,7 +111,7 @@ function moveColumn(event) {
 				numIntervalEnabled = false;
 			}, 100)
 
-			var currentColumDoc = document.getElementById("c" + (event.keyCode - 49));
+			var currentColumDoc = document.getElementById("c" + fixKeyNumber(event.keyCode - 49));
 			if (currentColumn === (event.keyCode - 49)) {
 				currentColumDoc.childNodes[0].click()
 			}
@@ -100,8 +119,18 @@ function moveColumn(event) {
 
 			// ※2
 			currentColumDoc.style.boxShadow = "0 0 0 2.5px " + getThemeColor();
+			window.open("#", "_self", "");
 		}
 	}
+}
+
+function fixKeyNumber(int) {
+	if (int === 8) {
+		return columns.length - 1;
+	} else {
+		return int;
+	}
+	console.log(int);
 }
 
 function switchImage(event) {
@@ -127,9 +156,39 @@ function switchImage(event) {
 	}
 }
 
+function clearReplyElem() {
+	/*setInterval(function() {
+		notes = document.getElementsByClassName("reply-to")
+		for (var i = 0; i < notes.length; i++) {
+			if (!loadedNotes.includes(notes[i])) {
+				loadedNotes.push(notes[i]);
+				var parent = notes[i].parentElement, visibleBtn = document.createElement("div");
+
+				visibleBtn.onclick = "this.display = (this.display == 'none') ? 'block' : 'none';"
+				visibleBtn.innerText = "visible reply";
+				visibleBtn.className = "havbbuyv";
+				visibleBtn.appendChild(notes[i]);
+
+				parent.appendChild(visibleBtn);
+				parent.removeChild(notes[i]);
+			}
+		}
+	}, 1000);*/
+}
+
+function putJumpNotesBtn() {
+	if (!isDeckMode() && document.getElementsByClassName("mk-notes").length !== 0 && document.getElementsByClassName("notes-count router-link-exact-active router-link-active").length !== 0) {
+		document.getElementsByClassName("mk-notes")[0].id = "notes";
+		document.getElementsByClassName("notes-count router-link-exact-active router-link-active")[0].href = "#notes"
+	}
+}
+
 /*
 	memo:
 		※1 : "数字キーでカラムの横移動"
 		※2 : "選択されているカラムのbox-shadow style操作"
 		※3 : "画像の調節"
+		※4 : "カラムに数字をつける"
+		※5 : "エスケープキーで画像exit(不完全)"
+		※6 : "リプライの送信先ノートをクリックで見る形にする(dekitenai)"
 */
