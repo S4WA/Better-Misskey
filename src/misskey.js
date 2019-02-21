@@ -10,12 +10,18 @@ window.onload = function() {
 };
 
 document.onkeydown = function(event) {
+	event = (event || window.event);
+	// console.log(event.keyCode);
+
 	// ※1
 	moveColumn(event);
 
 	// ※3
 	switchImage(event);
 	if (canSwitchImage() && (event.keyCode === 37 || event.keyCode === 39)) {return false;}
+
+	// ※4
+	exitImageElem(event);
 };
 
 document.onkeyup = function(event) {
@@ -29,7 +35,6 @@ document.onkeyup = function(event) {
 
 // ※3
 document.onclick = function(event) {
-	event = (event || window.event);
 	if (event.srcElement.className === "gqnyydlzavusgskkfvwvjiattxdzsqlf") {
 		setTimeout(function() {
 			imgDoc = document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq");
@@ -63,6 +68,10 @@ function canSwitchImage() {
 	return imgDoc !== null && files.length !== 0;
 }
 
+function enabledShortcutKey(event) {
+	return (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey);
+}
+
 function getThemeColor() {
 	// rgb(251, 111, 200)
 	var color = "rgb(100, 100, 100)"; // document.getElementsByClassName("note")[0].childNodes[0].style.backgroundColor
@@ -70,9 +79,7 @@ function getThemeColor() {
 }
 
 function moveColumn(event) {
-	if (isDeckMode() && numIntervalEnabled === false) {
-		event = (event || window.event);
-
+	if (isDeckMode() && !numIntervalEnabled && !enabledShortcutKey(event)) {
 		if (event.keyCode >= 49 && event.keyCode <= 56) {
 			window.open("#c" + (event.keyCode - 49), "_self", "");
 		}
@@ -121,14 +128,14 @@ function switchImage(event) {
 	}
 }
 
+function exitImageElem(event) {
+	if (imgDoc !== null && event.keyCode === 27) document.body.removeChild(document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq")[0]);
+}
+
 /*
 	memo:
 		※1 : "数字キーでカラムの横移動"
 		※2 : "選択されているカラムのbox-shadow style操作"
 		※3 : "画像の調節"
-
-	変数:
-		columns : カラムのリスト
-		currentColumn : 現在のカラムの数字
-		numIntervalEnabled : カラム移動のインターバルが有効か否か
+		※4 : "エスケープキーで画像を閉じる"
 */
