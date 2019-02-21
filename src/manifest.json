@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Better Misskey",
-	"description": "ayy",
+	"description": "misskey.xyz で機能を補う拡張機能です。",
 	"version": "1.0",
 	"content_scripts": [ {
 		"all_frames": true,
