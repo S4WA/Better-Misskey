@@ -19,9 +19,6 @@ document.onkeydown = function(event) {
 	// ※3
 	switchImage(event);
 	if (canSwitchImage() && (event.keyCode === 37 || event.keyCode === 39)) {return false;}
-
-	// ※4
-	exitImageElem(event);
 };
 
 document.onkeyup = function(event) {
@@ -41,11 +38,13 @@ document.onclick = function(event) {
 			var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes;
 			for (var i = 0; i < fileElems.length; i++) files.push(fileElems[i].href);
 
+			// imgDoc[0].removeChild(imgDoc[0].childNodes[0]);
+
 			doc.width = doc.width/1.3;
 			doc.title = "";
 
 			imgText = document.createElement("span");
-			imgText.style.color = "fff";
+			imgText.style.bakcgroundColor = "white";
 			imgText.innerText = (currentImageNum + 1) + "/" + files.length;
 			var center = document.createElement("center");
 			center.appendChild(imgText);
@@ -128,14 +127,9 @@ function switchImage(event) {
 	}
 }
 
-function exitImageElem(event) {
-	if (imgDoc !== null && event.keyCode === 27) document.body.removeChild(document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq")[0]);
-}
-
 /*
 	memo:
 		※1 : "数字キーでカラムの横移動"
 		※2 : "選択されているカラムのbox-shadow style操作"
 		※3 : "画像の調節"
-		※4 : "エスケープキーで画像を閉じる"
 */
