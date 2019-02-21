@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"name": "Better Misskey",
+	"description": "ayy",
+	"version": "1.0",
+	"content_scripts": [ {
+		"all_frames": true,
+		"js": [
+			"misskey.js"
+		],
+		"matches": [ "*://misskey.xyz/*" ],
+		"run_at": "document_end"
+	} ]
+}
