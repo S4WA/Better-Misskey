@@ -3,6 +3,11 @@
 	"name": "Better Misskey",
 	"description": "misskey.xyz で機能を補う拡張機能です。",
 	"version": "1.0",
+	"background": {
+		"scripts": [
+			"bg.js"
+		]
+	},
 	"content_scripts": [ {
 		"all_frames": true,
 		"js": [
@@ -10,5 +15,11 @@
 		],
 		"matches": [ "*://misskey.xyz/*" ],
 		"run_at": "document_end"
-	} ]
+	} ],
+	"permissions": [
+		"tabs", "contextMenus", "http://*/*", "https://*/*"
+	],
+	"web_accessible_resources": [
+		"options/options.html"
+	]
 }

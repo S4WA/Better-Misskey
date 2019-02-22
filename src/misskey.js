@@ -54,20 +54,22 @@ document.onclick = function(event) {
 	if (event.srcElement.className === "gqnyydlzavusgskkfvwvjiattxdzsqlf") {
 		setTimeout(function() {
 			imgDoc = document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq");
-			var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes;
-			for (var i = 0; i < fileElems.length; i++) files.push(fileElems[i].href);
+			if (imgDoc.length !== 0 && imgDoc[0].hasChildNodes) {
+				var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes;
+				for (var i = 0; i < fileElems.length; i++) files.push(fileElems[i].href);
 
-			// imgDoc[0].removeChild(imgDoc[0].childNodes[0]);
+				// imgDoc[0].removeChild(imgDoc[0].childNodes[0]);
 
-			doc.width = doc.width/1.3;
-			doc.title = "";
+				if (doc.height >= window.innerHeight/2) doc.width = doc.width/1.3;
+				doc.title = "";
 
-			imgText = document.createElement("span");
-			// imgText.style.color = "white";
-			imgText.innerText = (currentImageNum + 1) + "/" + files.length;
-			var center = document.createElement("center");
-			center.appendChild(imgText);
-			imgDoc[0].appendChild(center);
+				imgText = document.createElement("span");
+				// imgText.style.color = "white";
+				imgText.innerText = (currentImageNum + 1) + "/" + files.length;
+				var center = document.createElement("center");
+				center.appendChild(imgText);
+				imgDoc[0].appendChild(center);
+ 			}
 		}, 350);
 	} else if (event.path[1] !== null && event.path[1].className === "dkjvrdxtkvqrwmhfickhndpmnncsgacq") {
 		imgDoc = null;
