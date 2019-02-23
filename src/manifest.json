@@ -3,6 +3,7 @@
 	"name": "Better Misskey",
 	"description": "misskey.xyz で機能を補う拡張機能です。",
 	"version": "1.0",
+   "homepage_url": "https://s4wa.hatenadiary.jp",
 	"background": {
 		"scripts": [
 			"bg.js"
@@ -17,9 +18,11 @@
 		"run_at": "document_end"
 	} ],
 	"permissions": [
-		"tabs", "contextMenus", "http://*/*", "https://*/*"
+		"tabs", "contextMenus", "storage", "http://*/*", "https://*/*"
 	],
-	"web_accessible_resources": [
-		"options/options.html"
-	]
+	"options_ui": {
+		"page": "options/options.html",
+		"chrome_style": true,
+		"open_in_tab": true
+	}
 }

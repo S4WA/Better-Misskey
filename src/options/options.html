@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Better Misskey Options</title>
+	<link rel="stylesheet" href="chrome-bootstrap.css">
+	<script src="options.js"></script>
+</head>
+
+<body class="frame">
+	<div class="navigation">
+		<h1><a href="#">Better Misskey</a></h1>
+		<ul class="menu">
+			<li class="selected">
+				<a href="#">Settings</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="mainview view">
+		<div id="typography" class="selected">
+			<header>
+				<h1>Deck<small>Settings</small></h1>
+			</header>
+			<div class="content">
+				<br/>
+				<label>
+					<input type="checkbox" id="move-columns" checked="">
+					<span>Move column with number key</span>
+				</label>
+
+				<br/>
+				<label>
+					<input type="checkbox" id="draw-outline" checked="">
+					<span>On select column with number key to draw outline</span>
+				</label>
+
+				<br/>
+				<label>
+					<input type="checkbox" id="draw-numbers" checked="">
+					<span>Draw number to columns</span>
+				</label>
+
+				<br/>
+				<label>
+					<input type="checkbox" id="close-image" checked="">
+					<span>On press escape key to close image</span>
+				</label>
+
+				<br/>
+			</div>
+
+			<header>
+				<h1>Non Deck</h1>
+			</header>
+			<div class="content default">
+				<br/>
+				<label>
+					<input type="checkbox" id="resize-image" checked="">
+					<span>Resize image</span>
+				</label>
+
+				<br/>
+			</div>
+
+			<header>
+				<h1>Other Settings</h1>
+			</header>
+			<div class="content default">
+				<br/>
+				<label>
+					<input type="checkbox" id="share" checked="">
+					<span>Share tab</span>
+				</label>
+
+				<br/>
+				<button id="save">Save</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

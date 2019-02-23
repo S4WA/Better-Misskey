@@ -1,19 +1,31 @@
-var columns, currentColumn, numIntervalEnabled = false;
+var columns = new Array(), currentColumn, numIntervalEnabled = false;
 var imgDoc, files = new Array(), currentImageNum = 0, imgText;
 var notes, loadedNotes = new Array();
+	var map = [
+		{"move-columns": true},
+		{"draw-outline": true},
+		{"draw-numbers": true},
+		{"close-image": true},
+		{"resize-image": true},
+		{"share": true}
+	];
 
 window.onload = function() {
 	if (isDeckMode()) {
 		// ※1
-		columns = document.getElementsByClassName("dnpfarvgbnfmyzbdquhhzyxcmstpdqzs active");
-		for (var i = 0; i < columns.length; i++) {
-			columns[i].id = "c" + i;
+		setInterval(function() {
+			columns = document.getElementsByClassName("dnpfarvgbnfmyzbdquhhzyxcmstpdqzs active");
+			for (var i = 0; i < columns.length; i++) columns[i].id = "c" + i;
+		}, 1000);
 
-			// ※4
-			var number = document.createElement("span");
-			number.innerText = (i + 1);
-			columns[i].childNodes[0].appendChild(number);
-		}
+		// ※4
+		setTimeout(function() {
+			for (var i = 0; i < columns.length; i++) {
+				var number = document.createElement("span");
+				number.innerText = (i + 1);
+				columns[i].childNodes[0].appendChild(number);
+			}
+		}, 1100)
 	}
 
 	// ※6
@@ -55,21 +67,25 @@ document.onclick = function(event) {
 		setTimeout(function() {
 			imgDoc = document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq");
 			if (imgDoc.length !== 0 && imgDoc[0].hasChildNodes) {
-				var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes;
+				var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes, bgElems = document.getElementsByClassName("bg"), bg;
 				for (var i = 0; i < fileElems.length; i++) files.push(fileElems[i].href);
+				for (var i = 0; i < bgElems.length; i++) if (bgElems[i].parentElement === imgDoc[0]) bg = bgElems[i];
 
 				// imgDoc[0].removeChild(imgDoc[0].childNodes[0]);
 
 				if (doc.height >= window.innerHeight/2) doc.width = doc.width/1.3;
 				doc.title = "";
 
-				imgText = document.createElement("span");
-				// imgText.style.color = "white";
+				bg.style.background = "rgba(0, 0, 0, .2)";
+
+				imgText = document.createElement("h4");
+				imgText.style.color = "black";
+				imgText.style.textShadow = "#fff 0px 0px 2px, #fff 0px 0px 2px, #fff 0px 0px 2px, #fff 0px 0px 2px, #fff 0px 0px 2px, #fff 0px 0px 2px";
 				imgText.innerText = (currentImageNum + 1) + "/" + files.length;
 				var center = document.createElement("center");
 				center.appendChild(imgText);
 				imgDoc[0].appendChild(center);
- 			}
+			}
 		}, 350);
 	} else if (event.path[1] !== null && event.path[1].className === "dkjvrdxtkvqrwmhfickhndpmnncsgacq") {
 		imgDoc = null;
@@ -192,5 +208,5 @@ function putJumpNotesBtn() {
 		※3 : "画像の調節"
 		※4 : "カラムに数字をつける"
 		※5 : "エスケープキーで画像exit(不完全)"
-		※6 : "リプライの送信先ノートをクリックで見る形にする(dekitenai)"
+		※6 : "リプライの送信先ノートをクリックで見る形にする(やり方が好きじゃないけどこれ以外いい方法がない)"
 */
