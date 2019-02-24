@@ -1,10 +1,3 @@
-window.onload = function() {
-	console.log(
-		"option page\n - chrome-extension://labahgkpdplhaehfiepkjdgmgpkmlcie/options/options.html" + "\n" + 
-		"source code\n - https://github.com/S4WA/Better-Misskey"
-	);
-}
-
 chrome.contextMenus.removeAll();
 chrome.contextMenus.create({
 	"title": "Misskeyで共有する",

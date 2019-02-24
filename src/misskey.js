@@ -1,14 +1,14 @@
 var columns = new Array(), currentColumn, numIntervalEnabled = false;
 var imgDoc, files = new Array(), currentImageNum = 0, imgText;
 var notes, loadedNotes = new Array();
-	var map = [
-		{"move-columns": true},
-		{"draw-outline": true},
-		{"draw-numbers": true},
-		{"close-image": true},
-		{"resize-image": true},
-		{"share": true}
-	];
+	var map = {
+		"move_columns": true,
+		"draw_outline": true,
+		"draw_numbers": true,
+		"close_image": true,
+		"resize_image": true,
+		"share": true
+	};
 
 window.onload = function() {
 	if (isDeckMode()) {
@@ -30,9 +30,6 @@ window.onload = function() {
 
 	// ※6
 	clearReplyElem();
-
-	// ※7
-	putJumpNotesBtn();
 };
 
 document.onkeydown = function(event) {
@@ -201,12 +198,13 @@ function putJumpNotesBtn() {
 	}
 }
 
+
 /*
-	memo:
-		※1 : "数字キーでカラムの横移動"
-		※2 : "選択されているカラムのbox-shadow style操作"
-		※3 : "画像の調節"
-		※4 : "カラムに数字をつける"
-		※5 : "エスケープキーで画像exit(不完全)"
-		※6 : "リプライの送信先ノートをクリックで見る形にする(やり方が好きじゃないけどこれ以外いい方法がない)"
+memo:
+	※1 : "数字キーでカラムの横移動"
+	※2 : "選択されているカラムのbox-shadow style操作"
+	※3 : "画像の調節"
+	※4 : "カラムに数字をつける"
+	※5 : "エスケープキーで画像exit(不完全)"
+	※6 : "リプライの送信先ノートをクリックで見る形にする(やり方が好きじゃないけどこれ以外いい方法がない)"
 */

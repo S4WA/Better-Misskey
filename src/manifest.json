@@ -6,7 +6,8 @@
    "homepage_url": "https://s4wa.hatenadiary.jp",
 	"background": {
 		"scripts": [
-			"bg.js"
+			"bg.js",
+			"awoo.js"
 		]
 	},
 	"content_scripts": [ {
