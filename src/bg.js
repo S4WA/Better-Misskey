@@ -25,6 +25,7 @@ chrome.contextMenus.create({
 					});
 				};
 			});
+
 		});
 	}
 });

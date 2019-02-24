@@ -1,13 +1,14 @@
 var map = {
-		"move_columns": true,
-		"draw_outline": true,
-		"draw_numbers": true,
-		"close_image": true,
-		"resize_image": true,
-		"share": true
-	}, data = {}, saveBtn, box;
+	"move_columns": true,
+	"draw_outline": true,
+	"draw_numbers": true,
+	"close_image": true,
+	"resize_image": true,
+	"share": true,
+	"reload_all" : true
+}, data = {}, saveBtn, box;
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function() {
 	load();
 
 	saveBtn = document.getElementById("save");
@@ -16,7 +17,7 @@ window.onload = function () {
 	for (var i = 0; i < box.length; i++) box[i].checked = data[box[i].id];
 
 	saveBtn.onclick = function() { save(); };
-};
+});
 
 function save() {
 	var box = document.getElementsByClassName("box");
@@ -31,6 +32,8 @@ function save() {
 			}, 900);
 		}
 	});
+
+	if (map["reload_all"]) reloadAll();
 }
 
 function load() {
@@ -39,17 +42,18 @@ function load() {
 	});
 }
 
-/*for (var i = 0; i < map.length; i++) {
-	var key = Object.keys(map[i])[0];
-	// console.log(key + ": " + map[i][key]);
-	data.push(JSON.parse("{\"" + key + "\":" + !document.getElementById(key).disabled + "}"));
-}*/
-
-
-/*var isEqual = true;
-for (var i = 0; i < map.length; i++) {
-	if (JSON.stringify(map[i]) === JSON.stringify(data[i])) isEqual = false;
-}*/
+function reloadAll() {
+	chrome.tabs.query({
+		url: "*://misskey.xyz/*"
+	}, function (result) {
+		if (result.length !== 0) {
+			chrome.tabs.update(result[0].id, {}, function(tab) {
+				var code = "window.location.reload();";
+				for (var i = 0; i < tab.length; i++) chrome.tabs.executeScript(tab[i].id, {code: code});
+			});
+		};
+	});
+}
 
 /*
 map = default settings.
