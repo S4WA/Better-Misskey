@@ -13,7 +13,6 @@ var map = {
 
 window.onload = function() {
 	loadSettings();
-	console.log(map);
 
 	if (isDeckMode()) {
 		// ※1
