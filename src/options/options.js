@@ -8,16 +8,12 @@ var map = {
 	"reload_all" : true
 }, data = {}, saveBtn, box;
 
-document.addEventListener("DOMContentLoaded", function() {
+window.onload = function() {
 	load();
 
 	saveBtn = document.getElementById("save");
-	box = document.getElementsByClassName("box");
-
-	for (var i = 0; i < box.length; i++) box[i].checked = data[box[i].id];
-
 	saveBtn.onclick = function() { save(); };
-});
+};
 
 function save() {
 	var box = document.getElementsByClassName("box");
@@ -38,7 +34,10 @@ function save() {
 
 function load() {
 	chrome.storage.sync.get(null, function(items) {
-		for (var key in items) data[key] = items[key];
+		for (var key in items) {
+			data[key] = items[key];
+			if (document.getElementById(key) !== null) document.getElementById(key).checked = items[key];
+		}
 	});
 }
 
