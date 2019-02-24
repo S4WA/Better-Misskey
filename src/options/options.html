@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Better Misskey Options</title>
+	<title>Better Misskey 設定</title> <!-- Better Misskey Options -->
 	<link rel="stylesheet" href="chrome-bootstrap.css">
 	<script src="options.js"></script>
 </head>
@@ -13,7 +13,7 @@
 		<h1><a href="#">Better Misskey</a></h1>
 		<ul class="menu">
 			<li class="selected">
-				<a href="#">Settings</a>
+				<a href="#">設定</a> <!-- Settings -->
 			</li>
 		</ul>
 	</div>
@@ -21,31 +21,31 @@
 	<div class="mainview view">
 		<div id="typography" class="selected">
 			<header>
-				<h1>Deck<small>Settings</small></h1>
+				<h1>Deck<small>設定</small></h1> <!-- Settings -->
 			</header>
 			<div class="content">
 				<br/>
 				<label>
-					<input type="checkbox" id="move-columns" checked="">
-					<span>Move column with number key</span>
+					<input type="checkbox" id="move_columns" class="box" checked="">
+					<span>カラムを数字キーで移動する</span> <!-- Move column with number key -->
 				</label>
 
 				<br/>
 				<label>
-					<input type="checkbox" id="draw-outline" checked="">
-					<span>On select column with number key to draw outline</span>
+					<input type="checkbox" id="draw_outline" class="box" checked="">
+					<span>カラムを数字キーで選んだ時にアウトラインを表示する</span> <!-- On select column with number key to draw outline -->
 				</label>
 
 				<br/>
 				<label>
-					<input type="checkbox" id="draw-numbers" checked="">
-					<span>Draw number to columns</span>
+					<input type="checkbox" id="draw_numbers" class="box" checked="">
+					<span>カラムの数字を表示する</span><!-- Draw number to columns -->
 				</label>
 
 				<br/>
 				<label>
-					<input type="checkbox" id="close-image" checked="">
-					<span>On press escape key to close image</span>
+					<input type="checkbox" id="close_image" class="box" checked="">
+					<span>エスケープキーで画像を閉じる</span><!-- On press escape key to close image -->
 				</label>
 
 				<br/>
@@ -57,8 +57,8 @@
 			<div class="content default">
 				<br/>
 				<label>
-					<input type="checkbox" id="resize-image" checked="">
-					<span>Resize image</span>
+					<input type="checkbox" id="resize_image" class="box" checked="">
+					<span>画像をリサイズする</span> <!-- Resize image -->
 				</label>
 
 				<br/>
@@ -70,12 +70,12 @@
 			<div class="content default">
 				<br/>
 				<label>
-					<input type="checkbox" id="share" checked="">
-					<span>Share tab</span>
+					<input type="checkbox" id="share" class="box" checked="">
+					<span>タブの共有</span><!-- Share tab -->
 				</label>
 
 				<br/>
-				<button id="save">Save</button>
+				<button id="save">Save</button><span id="status"></span>
 			</div>
 		</div>
 	</div>
