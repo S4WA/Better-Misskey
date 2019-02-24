@@ -19,7 +19,7 @@
 		"run_at": "document_end"
 	} ],
 	"permissions": [
-		"tabs", "contextMenus", "storage", "http://*/*", "https://*/*"
+		"tabs", "contextMenus", "storage"", "http://*/*", "https://*/*"
 	],
 	"options_ui": {
 		"page": "options/options.html",

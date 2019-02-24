@@ -1,6 +1,6 @@
 window.onload = function() {
 	console.log(
-		"option page\n - chrome-extension://labahgkpdplhaehfiepkjdgmgpkmlcie/options/options.html" + "\n" + 
+		"option page\n - chrome-extension://bkmgmcphjfddgejhddnhjdbaebblecpe/options/options.html" + "\n" + 
 		"source code\n - https://github.com/S4WA/Better-Misskey"
 	);
 };
