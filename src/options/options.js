@@ -55,6 +55,8 @@ function reloadAll() {
 }
 
 /*
+
 map = default settings.
 data = user's settings.
+
 */
