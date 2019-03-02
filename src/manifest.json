@@ -1,13 +1,12 @@
 {
 	"manifest_version": 2,
 	"name": "Better Misskey",
-	"description": "misskey.xyz で機能を補う拡張機能です。",
-	"version": "1.0",
-   "homepage_url": "https://s4wa.hatenadiary.jp",
+	"description": "misskey.xyz で機能を補います。",
+	"version": "1.1",
+	"homepage_url": "https://github.com/S4WA/Better-Misskey",
 	"background": {
 		"scripts": [
-			"bg.js",
-			"awoo.js"
+			"bg.js"
 		]
 	},
 	"content_scripts": [ {
@@ -19,7 +18,7 @@
 		"run_at": "document_end"
 	} ],
 	"permissions": [
-		"tabs", "contextMenus", "storage"", "http://*/*", "https://*/*"
+		"tabs", "contextMenus", "storage", "*://misskey.xyz/*"
 	],
 	"options_ui": {
 		"page": "options/options.html",
