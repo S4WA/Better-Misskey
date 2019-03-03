@@ -6,50 +6,27 @@ var map = {
 	"resize_image": true,
 	"share": true,
 	"reload_all" : true,
-	"language": "japanese"
+	"change_with_arrow": true,
+	"language": "japanese",
+	"css": ""
 },
-data = {},
-language = {
-	"japanese": {
-		"move_columns": "カラムを数字キーで移動する",
-		"draw_outline": "カラムを数字キーで選んだ時にアウトラインを表示する",
-		"draw_numbers": "カラムの数字を表示する",
-		"close_image": "エスケープキーで画像を閉じる",
-		"resize_image": "画像をリサイズする",
-		"share": "タブの共有",
-		"reload_all" : "設定を保存したとき全Misskeyのタブをリロードする",
-		"save": "保存",
-		"better-misskey-settings": "Better Misskey 設定",
-		"settings": "設定"
-	},
-	"english": {
-		"move_columns": "Move column with number key",
-		"draw_outline": "On select column with number key to draw outline",
-		"draw_numbers": "Draw number to columns",
-		"close_image": "On press escape key to close image",
-		"resize_image": "Resize image",
-		"share": "Share tab",
-		"reload_all" : "On save settings to reload all misskey tabs",
-		"save": "Save",
-		"better-misskey-settings": "Better Misskey Options",
-		"settings": "Settings"
-	}
-},
+loaded_language = "",
 saveBtn, box;
 
 window.onload = function() {
 	load();
-
-	saveBtn = document.getElementById("save");
-	saveBtn.onclick = function() { save(); };
+	document.getElementById("save").onclick = function() { save(); };
 };
 
 function save() {
 	var box = document.getElementsByClassName("box"), saveBtn = document.getElementById("save");
 	for (var i = 0; i < box.length; i++) map[box[i].id] = box[i].checked;
 	map["language"] = document.getElementById("language").value;
+	map["css"] = document.getElementById("css").value;
 
 	chrome.storage.sync.set(map, function() {
+		if (loaded_language.toLowerCase() !== map["language"].toLowerCase()) location.reload();
+
 		var doc = document.getElementById("status");
 		if (doc.innerText === "") {
 			saveBtn.disabled = true;
@@ -67,11 +44,11 @@ function save() {
 function load() {
 	chrome.storage.sync.get(null, function(items) {
 		for (var key in items) {
-			data[key] = items[key];
 			if (document.getElementById(key) !== null) document.getElementById(key).checked = items[key];
 		}
 		var lang = items["language"].toLowerCase();
 		document.getElementById(lang).selected = true;
+		document.getElementById("css").value = items["css"];
 		putLangs(lang);
 	});
 }
@@ -98,11 +75,44 @@ function putLangs(lang) {
 			}
 		}
 	}
+	loaded_language = lang;
 }
 
-/*
+var language = {
+	"japanese": {
+		"move_columns": "カラムを数字キーで移動する",
+		"draw_outline": "カラムを数字キーで選んだ時にアウトラインを表示する",
+		"draw_numbers": "カラムの数字を表示する",
+		"close_image": "エスケープキーで画像を閉じる",
+		"resize_image": "画像をリサイズする",
+		"share": "タブの共有",
+		"reload_all" : "設定を保存したとき全Misskeyのタブをリロードする",
+		"change_with_arrow": "矢印キーで画像を操作する",
+		"paste_it": "cssをペーストしてください",
 
-map = default settings.
-data = user's settings.
+		"save": "保存",
+		"better_misskey_settings": "Better Misskey 設定",
+		"settings": "設定",
 
-*/
+		"warn_1": "(拡張機能のリロードが必要です)",
+		"warn_2": "(Deckモードでは動作が不安定です)"
+	},
+	"english": {
+		"move_columns": "Move column with number key",
+		"draw_outline": "On select column with number key to draw outline",
+		"draw_numbers": "Draw number to columns",
+		"close_image": "On press escape key to close image",
+		"resize_image": "Resize image",
+		"share": "Share tab",
+		"reload_all" : "On save settings to reload all misskey tabs",
+		"change_with_arrow": "Change image with arrow key",
+		"paste_it": "paste css here.",
+
+		"save": "Save",
+		"better_misskey_settings": "Better Misskey Options",
+		"settings": "Settings",
+
+		"warn_1": "(need reload this extension)",
+		"warn_2": "(not better on deck mode)"
+	}
+}

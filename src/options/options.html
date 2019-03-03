@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>better-misskey-settings</title>
+	<title class="translate">$better_misskey_settings</title>
 	<link rel="stylesheet" href="chrome-bootstrap.css">
 	<script src="options.js"></script>
 </head>
@@ -68,6 +68,13 @@
 				<label>
 					<input type="checkbox" id="close_image" class="box" checked="">
 					<span class="translate">$close_image</span>
+					<small class="translate">$warn_2</small>
+				</label>
+
+				<br/>
+				<label>
+					<input type="checkbox" id="change_with_arrow" class="box" checked="">
+					<span class="translate">$change_with_arrow</span>
 				</label>
 
 				<br/>
@@ -81,12 +88,24 @@
 				<label>
 					<input type="checkbox" id="share" class="box" checked="">
 					<span class="translate">$share</span>
+					<small class="translate">$warn_1</small>
 				</label>
 				<br/>
 
 				<label>
 					<input type="checkbox" id="reload_all" class="box" checked="">
 					<span class="translate">$reload_all</span>
+				</label>
+
+			</div>
+
+			<header>
+				<h1>Custom CSS Editor<small class="translate">$paste_it</small></h1>
+			</header>
+			<div class="content default">
+				<br/>
+				<label>
+					<input type="text" id="css"style="width: 500px;">
 				</label>
 
 				<br/>
