@@ -1,4 +1,4 @@
-var columns = new Array(), currentColumn, numIntervalEnabled = false;
+var columns = new Array(), currentColumn, numIntervalEnabled = false, color;
 var imgDoc, files = new Array(), currentImageNum = 0, imgText;
 var notes, loadedNotes = new Array();
 var map = {
@@ -8,14 +8,16 @@ var map = {
 	"close_image": true,
 	"resize_image": true,
 	"share": true,
-	"reload_all" : true
+	"reload_all" : true,
+	"change_with_arrow": true,
+	"css": ""
 };
 
 window.onload = function() {
 	loadSettings();
+	getThemeColor();
 
 	if (isDeckMode()) {
-		// ※1
 		if (map["move_columns"]) {
 			setInterval(function() {
 				columns = document.getElementsByClassName("dnpfarvgbnfmyzbdquhhzyxcmstpdqzs active");
@@ -23,7 +25,6 @@ window.onload = function() {
 			}, 1000);
 		}
 
-		// ※4
 		if (map["draw_numbers"]) {
 			setTimeout(function() {
 				for (var i = 0; i < columns.length; i++) {
@@ -34,24 +35,21 @@ window.onload = function() {
 			}, 1100)
 		}
 	}
+
+	setInterval(function() {
+		document.body.style = map["css"];
+	}, 500);
 };
 
 document.onkeydown = function(event) {
 	event = (event || window.event);
 	// console.log(event.keyCode);
 
-	// ※1
-	if (map["move_columns"]) {
-		moveColumn(event);
-	}
+	if (map["move_columns"]) moveColumn(event);
 
-	// ※3
-	if (map["resize_image"]) {
-		switchImage(event);
-		if (canSwitchImage() && (event.keyCode === 37 || event.keyCode === 39)) {return false;}
-	}
+	if (map["change_with_arrow"]) switchImage(event);
+	if (canSwitchImage() && (event.keyCode === 37 || event.keyCode === 39)) {return false;}
 
-	// ※5
 	if (map["close_image"]) {
 		if (imgDoc !== null && !enabledShortcutKey(event) && event.keyCode === 27) {
 			document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq")[0].childNodes[1].click();
@@ -60,7 +58,6 @@ document.onkeydown = function(event) {
 };
 
 document.onkeyup = function(event) {
-	// ※2
 	if (map["draw_outline"]) {
 		if (document.getElementById("c" + (event.keyCode - 49)) !== null) {
 			event = (event || window.event);
@@ -70,19 +67,19 @@ document.onkeyup = function(event) {
 	}
 };
 
-// ※3
 document.onclick = function(event) {
-	if (map["resize_image"]) {
-		if (event.srcElement.className === "gqnyydlzavusgskkfvwvjiattxdzsqlf") {
-			setTimeout(function() {
-				imgDoc = document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq");
-				if (imgDoc.length !== 0 && imgDoc[0].hasChildNodes) {
-					var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes, bgElems = document.getElementsByClassName("bg"), bg;
-					for (var i = 0; i < fileElems.length; i++) files.push(fileElems[i].href);
-					for (var i = 0; i < bgElems.length; i++) if (bgElems[i].parentElement === imgDoc[0]) bg = bgElems[i];
+	if (event.srcElement.className === "gqnyydlzavusgskkfvwvjiattxdzsqlf") {
+		setTimeout(function() {
+			imgDoc = document.getElementsByClassName("dkjvrdxtkvqrwmhfickhndpmnncsgacq");
+			if (imgDoc.length !== 0 && imgDoc[0].childNodes.length !== 0) {
+				var doc = imgDoc[0].childNodes[1], fileElems = event.path[4].childNodes[0].childNodes[0].childNodes[0].childNodes, bgElems = document.getElementsByClassName("bg"), bg;
+				for (var i = 0; i < fileElems.length; i++) files.push(fileElems[i].href);
+				for (var i = 0; i < bgElems.length; i++) if (bgElems[i].parentElement === imgDoc[0]) bg = bgElems[i];
 
-					// imgDoc[0].removeChild(imgDoc[0].childNodes[0]);
+				// imgDoc[0].removeChild(imgDoc[0].childNodes[0]);
 
+
+				if (map["resize_image"]) {
 					if (doc.height >= window.innerHeight/2) doc.width = doc.width/1.3;
 					doc.title = "";
 
@@ -96,13 +93,13 @@ document.onclick = function(event) {
 					center.appendChild(imgText);
 					imgDoc[0].appendChild(center);
 				}
-			}, 350);
-		} else if (event.path[1] !== null && event.path[1].className === "dkjvrdxtkvqrwmhfickhndpmnncsgacq") {
-			imgDoc = null;
-			imgText = null;
-			files = new Array();
-			currentImageNum = 0;
-		}
+			}
+		}, 350);
+	} else if (event.path[1] !== null && event.path[1].className === "dkjvrdxtkvqrwmhfickhndpmnncsgacq") {
+		imgDoc = null;
+		imgText = null;
+		files = new Array();
+		currentImageNum = 0;
 	}
 };
 
@@ -126,9 +123,11 @@ function enabledShortcutKey(event) {
 }
 
 function getThemeColor() {
-	// rgb(251, 111, 200)
-	var color = "rgb(100, 100, 100)"; // document.getElementsByClassName("note")[0].childNodes[0].style.backgroundColor
-	return color;
+	fetch("https://misskey.xyz/manifest.json")
+		.then(res => res.json())
+		.then(json => {
+			color = json.theme_color;
+		});
 }
 
 function moveColumn(event) {
@@ -152,9 +151,8 @@ function moveColumn(event) {
 			}
 			currentColumn = event.keyCode - 49;
 
-			// ※2
 			if (map["draw_outline"]) {
-				currentColumDoc.style.boxShadow = "0 0 0 2.5px " + getThemeColor();
+				currentColumDoc.style.boxShadow = "0 0 0 2.5px " + color;
 				window.open("#", "_self", "");
 			}
 		}
@@ -188,7 +186,7 @@ function switchImage(event) {
 		if (event.keyCode === 37 || event.keyCode === 39) {
 			// console.log("current: " + currentImageNum + ", " + "key: " + event.keyCode);
 			imgElem.src = files[currentImageNum];
-			imgText.innerText = (currentImageNum + 1) + "/" + files.length;;
+			if (imgText != null) imgText.innerText = (currentImageNum + 1) + "/" + files.length;;
 		}
 	}
 }
@@ -220,13 +218,4 @@ function putJumpNotesBtn() {
 	}
 }
 
-
-/*
-memo:
-	※1 : "数字キーでカラムの横移動" : "move_columns"
-	※2 : "選択されているカラムのbox-shadow style操作" : "draw_outline"
-	※3 : "画像の調節" : "resize_image"
-	※4 : "カラムに数字をつける" : "draw_numbers"
-	※5 : "エスケープキーで画像exit(不完全)" : "close_image"
-	※6 : "共有" : "share"
-*/
+// うぃ
