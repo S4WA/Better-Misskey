@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Better Misskey 設定</title> <!-- Better Misskey Options -->
+	<title>better-misskey-settings</title>
 	<link rel="stylesheet" href="chrome-bootstrap.css">
 	<script src="options.js"></script>
 </head>
@@ -13,10 +13,16 @@
 		<h1><a href="#">Better Misskey</a></h1>
 		<ul class="menu">
 			<li class="selected">
-				<a href="#">設定</a> <!-- Settings -->
+				<a href="#" class="translate">$settings</a>
 			</li>
 			<li>
 				<a href="https://github.com/S4WA/Better-Misskey" target="_blank">Github</a>
+			</li>
+			<li>
+				<select id="language">
+					<option id="japanese">Japanese</option>
+					<option id="english">English</option>
+				</select>
 			</li>
 		</ul>
 	</div>
@@ -24,25 +30,25 @@
 	<div class="mainview view">
 		<div id="typography" class="selected">
 			<header>
-				<h1>Deck<small>設定</small></h1> <!-- Settings -->
+				<h1>Deck<small class="translate">$settings</small></h1>
 			</header>
 			<div class="content">
 				<br/>
 				<label>
 					<input type="checkbox" id="move_columns" class="box" checked="">
-					<span>カラムを数字キーで移動する</span> <!-- Move column with number key -->
+					<span class="translate">$move_columns</span>
 				</label>
 
 				<br/>
 				<label>
 					<input type="checkbox" id="draw_outline" class="box" checked="">
-					<span>カラムを数字キーで選んだ時にアウトラインを表示する</span> <!-- On select column with number key to draw outline -->
+					<span class="translate">$draw_outline</span>
 				</label>
 
 				<br/>
 				<label>
 					<input type="checkbox" id="draw_numbers" class="box" checked="">
-					<span>カラムの数字を表示する</span><!-- Draw number to columns -->
+					<span class="translate">$draw_numbers</span>
 				</label>
 
 				<br/>
@@ -55,13 +61,13 @@
 				<br/>
 				<label>
 					<input type="checkbox" id="resize_image" class="box" checked="">
-					<span>画像をリサイズする</span> <!-- Resize image -->
+					<span class="translate">$resize_image</span>
 				</label>
 
 				<br/>
 				<label>
 					<input type="checkbox" id="close_image" class="box" checked="">
-					<span>エスケープキーで画像を閉じる</span><!-- On press escape key to close image -->
+					<span class="translate">$close_image</span>
 				</label>
 
 				<br/>
@@ -74,17 +80,17 @@
 				<br/>
 				<label>
 					<input type="checkbox" id="share" class="box" checked="">
-					<span>タブの共有</span><!-- Share tab -->
+					<span class="translate">$share</span>
 				</label>
 				<br/>
 
 				<label>
 					<input type="checkbox" id="reload_all" class="box" checked="">
-					<span>設定を保存したとき全Misskeyのタブをリロードする</span><!-- On save settings to reload all misskey tabs -->
+					<span class="translate">$reload_all</span>
 				</label>
 
 				<br/>
-				<button id="save">Save</button><span id="status"></span>
+				<button id="save" class="translate">$save</button><span id="status"></span>
 			</div>
 		</div>
 	</div>
