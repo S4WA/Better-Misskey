@@ -3,4 +3,4 @@
 
 ![img](https://github.com/S4WA/Better-Misskey/blob/master/files/%E7%84%A1%E9%A1%8C.png?raw=true)
 
-fOlLOw mE on misskey. [@sUimIn](https://akiba.cloud/drip/)
+fOlLOw mE on misskey. [@sUimIn](https://misskey.xyz/@suimin)
