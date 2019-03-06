@@ -6,7 +6,8 @@
 	"homepage_url": "https://github.com/S4WA/Better-Misskey",
 	"background": {
 		"scripts": [
-			"bg.js"
+			"bg.js",
+			"awoo.js"
 		]
 	},
 	"content_scripts": [ {
