@@ -200,9 +200,11 @@ function previewDraftImage() {
 		if (document.getElementsByClassName("img") != null && map["preview_image_on_draft"]) {
 			var images = document.getElementsByClassName("img");
 			for (var i = 0; i < images.length; i++) {
-				images[i].onclick = function() {
-					var url = this.style.backgroundImage.replace("url(\"", "").replace("\")", "");
-					window.open(url, "_" + map["preview_with"], map["preview_with"] === "popup" ? "width = auto, height = auto" : "");
+				if (images[i].parentElement != null && images[i].parentElement.parentElement && images[i].parentElement.parentElement.parentElement && images[i].parentElement.parentElement.parentElement.className === "files") {
+					images[i].onclick = function() {
+						var url = this.style.backgroundImage.replace("url(\"", "").replace("\")", "");
+						window.open(url, "_" + map["preview_with"], map["preview_with"] === "popup" ? "width = auto, height = auto" : "");
+					}
 				}
 			}
 		}
