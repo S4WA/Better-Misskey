@@ -105,7 +105,10 @@ var language = {
 		"settings": "設定",
 
 		"warn_1": "(拡張機能のリロードが必要です)",
-		"warn_2": "(Deckモードでは動作が不安定です)"
+		"warn_2": "(Deckモードでは動作が不安定です)",
+
+		"popup": "ポップアップ",
+		"blank": "新しいタブ"
 	},
 	"english": {
 		"move_columns": "Move column with number key",
@@ -124,6 +127,9 @@ var language = {
 		"settings": "Settings",
 
 		"warn_1": "(need reload this extension)",
-		"warn_2": "(not better on deck mode)"
+		"warn_2": "(not better on deck mode)",
+
+		"popup": "popup",
+		"blank": "new tab"
 	}
 }
