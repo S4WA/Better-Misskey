@@ -186,7 +186,7 @@ function switchImage(event) {
 		if (event.keyCode === 37 || event.keyCode === 39) {
 			// console.log("current: " + currentImageNum + ", " + "key: " + event.keyCode);
 			imgElem.src = files[currentImageNum];
-			if (imgText != null) imgText.innerText = (currentImageNum + 1) + "/" + files.length;;
+			if (imgText != null) imgText.innerText = (currentImageNum + 1) + "/" + files.length;
 		}
 	}
 }

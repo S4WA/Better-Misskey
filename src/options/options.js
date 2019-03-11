@@ -16,6 +16,7 @@ saveBtn, box;
 window.onload = function() {
 	load();
 	document.getElementById("save").onclick = function() { save(); };
+	document.getElementById("version").innerText = "v" + chrome.runtime.getManifest().version;
 };
 
 function save() {
@@ -43,6 +44,7 @@ function save() {
 
 function load() {
 	chrome.storage.sync.get(null, function(items) {
+		if (isEmpty(items)) items = map;
 		for (var key in items) {
 			if (document.getElementById(key) !== null) document.getElementById(key).checked = items[key];
 		}
@@ -51,6 +53,10 @@ function load() {
 		document.getElementById("css").value = items["css"];
 		putLangs(lang);
 	});
+}
+
+function isEmpty(obj){
+	return !Object.keys(obj).length;
 }
 
 function reloadAll() {

@@ -1,13 +1,12 @@
 chrome.contextMenus.removeAll();
 chrome.storage.sync.get(null, function(items) {
+	if (isEmpty(items)) items["share"] = true;
 	if (items["share"]) {
 		chrome.contextMenus.create({
 			"title": "Misskeyで共有する",
 			"onclick": function () {
 				chrome.tabs.getSelected(null, function(tab) {
 					var str = tab.title + " " + tab.url;
-					// console.log(str);
-
 					chrome.tabs.query({
 						url: "*://misskey.xyz/*"
 					}, function (result) {
@@ -23,3 +22,7 @@ chrome.storage.sync.get(null, function(items) {
 		});
 	}
 });
+
+function isEmpty(obj){
+	return !Object.keys(obj).length;
+}
