@@ -19,7 +19,7 @@
 				<a href="https://github.com/S4WA/Better-Misskey" target="_blank">Github</a>
 			</li>
 			<li>
-				<a href="https://github.com/S4WA/Better-Misskey/wiki/Changelog">Changelog</a>
+				<a href="https://github.com/S4WA/Better-Misskey/wiki/Changelog" target="_blank">Changelog</a>
 			</li>
 			<li>
 				<select id="language">
@@ -81,6 +81,12 @@
 				</label>
 
 				<br/>
+				<label>
+					<input type="checkbox" id="preview_image_on_draft" class="box" checked="">
+					<span class="translate">$preview_image_on_draft</span>
+				</label>
+
+				<br/>
 			</div>
 
 			<header>
@@ -98,8 +104,11 @@
 				<label>
 					<input type="checkbox" id="reload_all" class="box" checked="">
 					<span class="translate">$reload_all</span>
+					<select id="preview_with">
+						<option>popup</option>
+						<option>blank</option>
+					</select>
 				</label>
-
 			</div>
 
 			<header>

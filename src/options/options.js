@@ -8,7 +8,9 @@ var map = {
 	"reload_all" : true,
 	"change_with_arrow": true,
 	"language": "japanese",
-	"css": ""
+	"css": "",
+	"preview_image_on_draft": true,
+	"preview_with": "popup"
 },
 loaded_language = "",
 saveBtn, box;
@@ -23,6 +25,7 @@ function save() {
 	var box = document.getElementsByClassName("box"), saveBtn = document.getElementById("save");
 	for (var i = 0; i < box.length; i++) map[box[i].id] = box[i].checked;
 	map["language"] = document.getElementById("language").value;
+	map["preview_with"] = document.getElementById("preview_with").value;
 	map["css"] = document.getElementById("css").value;
 
 	chrome.storage.sync.set(map, function() {
@@ -95,6 +98,7 @@ var language = {
 		"reload_all" : "設定を保存したとき全Misskeyのタブをリロードする",
 		"change_with_arrow": "矢印キーで画像を操作する",
 		"paste_it": "cssをペーストしてください",
+		"preview_image_on_draft": "下書きの画像をプレビューする",
 
 		"save": "保存",
 		"better_misskey_settings": "Better Misskey 設定",
@@ -113,6 +117,7 @@ var language = {
 		"reload_all" : "On save settings to reload all misskey tabs",
 		"change_with_arrow": "Change image with arrow key",
 		"paste_it": "paste css here.",
+		"preview_image_on_draft": "Preview draft's image",
 
 		"save": "Save",
 		"better_misskey_settings": "Better Misskey Options",
