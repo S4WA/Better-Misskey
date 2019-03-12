@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<script>
+		var link = null,
+			translate = {
+				"English": "open option page",
+				"Japanese": "オプションページを開く"
+			};
+
+		window.onload = function() {
+			link = document.getElementById("option_page");
+			link.onclick = function() {
+				chrome.tabs.create({ url: "chrome-extension://" + chrome.runtime.id + "/options/options.html"}, tab => {});
+			}
+
+			chrome.storage.sync.get(null, function(items) {
+				var lang = isEmpty(items) ? "English" : items.language;
+				link.innerText = translate[lang];
+			});
+		}
+
+		function isEmpty(obj){
+			return !Object.keys(obj).length;
+		}
+	</script>
+	<style>
+		body {
+			width: 150px;
+		}
+	</style>
+</head>
+
+<body>
+	<span><a id="option_page" href="">open option page</a><span>
+</body>
+</html>
