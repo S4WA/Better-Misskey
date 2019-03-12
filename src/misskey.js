@@ -23,7 +23,10 @@ window.onload = function() {
 		if (map["move_columns"]) {
 			setInterval(function() {
 				columns = document.getElementsByClassName("dnpfarvgbnfmyzbdquhhzyxcmstpdqzs active");
-				for (var i = 0; i < columns.length; i++) columns[i].id = "c" + i;
+				for (var i = 0; i < columns.length; i++) {
+					columns[i].id = "c" + i;
+					columns[i].onclick = "return false";
+				}
 			}, 1000);
 		}
 
@@ -127,11 +130,12 @@ function enabledShortcutKey(event) {
 }
 
 function getThemeColor() {
-	fetch("https://misskey.xyz/manifest.json")
+	/*fetch("https://misskey.xyz/manifest.json")
 		.then(res => res.json())
 		.then(json => {
 			color = json.theme_color;
-		});
+		});*/
+	color = JSON.parse(localStorage.theme).primary;
 }
 
 function moveColumn(event) {
