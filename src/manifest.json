@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Better Misskey",
 	"description": "misskey.xyz で機能を補います。",
-	"version": "1.4.7",
+	"version": "1.4.8",
 	"homepage_url": "https://github.com/S4WA/Better-Misskey",
 	"background": {
 		"scripts": [

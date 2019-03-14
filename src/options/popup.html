@@ -12,14 +12,14 @@
 
 		window.onload = function() {
 			link = document.getElementById("option_page");
-			link.onclick = function() {
-				chrome.tabs.create({ url: "chrome-extension://" + chrome.runtime.id + "/options/options.html"}, tab => {});
-			}
+			link.href = "chrome-extension://" + chrome.runtime.id + "/options/options.html";
 
 			chrome.storage.sync.get(null, function(items) {
 				var lang = isEmpty(items) ? "English" : items.language;
 				link.innerText = translate[lang];
 			});
+
+			document.getElementById("version").innerText = "v" + chrome.runtime.getManifest().version;
 		}
 
 		function isEmpty(obj){
@@ -28,12 +28,22 @@
 	</script>
 	<style>
 		body {
-			width: 150px;
+			width: 200px;
 		}
 	</style>
 </head>
 
 <body>
-	<span><a id="option_page" href="">open option page</a><span>
+	<h3>Better Misskey <small id="version"></small></h3>
+	<span>
+		<ul style="padding-left: 20px;">
+			<li>
+				<a id="option_page" href="" target="_blank">open option page</a>
+			</li>
+			<li>
+				<a href="https://chrome.google.com/webstore/detail/better-misskey/bkmgmcphjfddgejhddnhjdbaebblecpe" target="_blank">Chrome Store</a>
+			</li>
+		<ul>
+	<span>
 </body>
 </html>
