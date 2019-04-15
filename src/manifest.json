@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Better Misskey",
 	"description": "misskey.xyz で機能を補います。",
-	"version": "1.4.8",
+	"version": "1.4.9",
 	"homepage_url": "https://github.com/S4WA/Better-Misskey",
 	"background": {
 		"scripts": [
@@ -15,11 +15,11 @@
 		"js": [
 			"misskey.js"
 		],
-		"matches": [ "*://misskey.xyz/*" ],
+		"matches": [ "*://misskey.xyz/*", "*://misskey.io/*" ],
 		"run_at": "document_end"
 	} ],
 	"permissions": [
-		"tabs", "contextMenus", "storage", "*://misskey.xyz/*"
+		"tabs", "contextMenus", "storage", "*://misskey.xyz/*", "*://misskey.io/*"
 	],
 	"options_ui": {
 		"page": "options/options.html",
