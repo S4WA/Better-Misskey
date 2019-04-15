@@ -5,6 +5,6 @@
 
 # Links
 * [Misskey Github](https://github.com/syuilo/misskey)
-* [Misskey](https://misskey.xyz)
+* [Misskey](https://misskey.io)
 * [Chrome Store](https://chrome.google.com/webstore/detail/better-misskey/bkmgmcphjfddgejhddnhjdbaebblecpe)
-* [@suimin](https://misskey.xyz/@suimin)
+* [@suimin](https://misskey.io/@drip)
